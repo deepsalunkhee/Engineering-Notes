@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Understanding the SHA-256 Algorithm: Implementation and Usage in JavaScript</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Understanding the SHA-256 Algorithm: Implementation and Usage in JavaScript</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+In the realm of cryptography, the SHA-256 algorithm stands as one of the most widely used and trusted hashing functions. Its applications…
+</section>
+<section data-field="body" class="e-content">
+<section name="5058" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="9a0b" id="9a0b" class="graf graf--h3 graf--leading graf--title">Understanding the SHA-256 Algorithm: Implementation and Usage in JavaScript</h3><figure name="f774" id="f774" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*uCzvio81-pz9u-A0qwF-zg.jpeg" data-width="850" data-height="834" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*uCzvio81-pz9u-A0qwF-zg.jpeg"><figcaption class="imageCaption">High level block diagram of SHA-256</figcaption></figure><p name="16af" id="16af" class="graf graf--p graf-after--figure">In the realm of cryptography, the SHA-256 algorithm stands as one of the most widely used and trusted hashing functions. Its applications range from data integrity verification to password hashing. In this blog post, we’ll delve into the high level workings of SHA-256 and explore a JavaScript implementation of the algorithm.</p><p name="1240" id="1240" class="graf graf--p graf-after--p">Understanding SHA-256: SHA-256, which stands for Secure Hash Algorithm 256-bit, belongs to the SHA-2 family of cryptographic hash functions. It takes an input message and produces a fixed-size output hash value of 256 bits, regardless of the size of the input.</p><p name="ee36" id="ee36" class="graf graf--p graf-after--p">The SHA-256 algorithm operates in several stages:</p><ol class="postList"><li name="7f36" id="7f36" class="graf graf--li graf-after--p">Pre-processing: The input message is padded to ensure its length is a multiple of 512 bits. Padding includes appending a single ‘1’ bit followed by ‘0’ bits until the message length satisfies the padding requirement. Additionally, the original length of the message is appended.</li><li name="211c" id="211c" class="graf graf--li graf-after--li">Message Schedule: The padded message is divided into 512-bit blocks, which are further divided into sixteen 32-bit words. These words are used to create an additional 64 words for each block through a series of logical operations.</li><li name="63b0" id="63b0" class="graf graf--li graf-after--li">Hash Computation: In this stage, the initial hash values (constants derived from the fractional parts of the square roots of the first 8 primes) are initialized. Each 512-bit block undergoes 64 rounds of processing, where various logical and bitwise operations are performed on the block’s words and the current hash values. These operations include bitwise rotations, XOR operations, and logical functions specific to the SHA-256 algorithm.</li><li name="a3ab" id="a3ab" class="graf graf--li graf-after--li">Finalization: After processing all blocks, the resulting hash values are concatenated to form the final 256-bit hash output.</li></ol><p name="3211" id="3211" class="graf graf--p graf-after--li">JavaScript Implementation:</p><p name="2d4a" id="2d4a" class="graf graf--p graf-after--p">I have tried to implement tthe SHA-256 to create a hashing library (some thing like bcrypt just much basic)</p><p name="850f" id="850f" class="graf graf--p graf-after--p">The provided JavaScript(encrypt.js file) code demonstrates a concise implementation of the SHA-256 algorithm. It includes functions for bitwise rotations, logical operations, and the main SHA-256 functions used in each processing round. The code adheres closely to the specifications of the SHA-256 algorithm, making it suitable for practical use cases.</p><p name="8f00" id="8f00" class="graf graf--p graf-after--p">The SHA-256 algorithm plays a crucial role in ensuring data integrity and security across various applications. Its robustness and widespread adoption make it a cornerstone of modern cryptography. By understanding its inner workings and exploring implementations like the one discussed here, developers can leverage SHA-256 to enhance the security of their systems and applications.</p><p name="f5cb" id="f5cb" class="graf graf--p graf-after--p graf--trailing">REPO: <a href="https://github.com/deepsalunkhee/Hasher" data-href="https://github.com/deepsalunkhee/Hasher" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">https://github.com/deepsalunkhee/Hasher</a></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@deepsalunkhee" class="p-author h-card">Deepsalunkhee</a> on <a href="https://medium.com/p/6f50483d8bda"><time class="dt-published" datetime="2024-04-21T05:17:32.185Z">April 21, 2024</time></a>.</p><p><a href="https://medium.com/@deepsalunkhee/understanding-the-sha-256-algorithm-implementation-and-usage-in-javascript-6f50483d8bda" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on April 21, 2024.</p></footer></article></body></html>
