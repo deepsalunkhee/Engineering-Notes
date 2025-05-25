@@ -1,0 +1,10 @@
+create table Users (U_id varchar primary key, U_name varchar , U_nation varchar ,U_phone int , U_mail varchar ,U_dob date , U_player bool , U_coach bool);
+select *from Users ;
+create table Roles(U_id varchar, R_cap bool, R_bat bool, R_bowl bool, R_wkt bool, R_allround bool);
+select *from Roles ;
+create table league(L_id varchar primary key,U_id varchar,T_id varchar,L_name varchar,L_org varchar,L_period varchar,L_origin varchar );
+select * from league;
+insert into league values('l1','IPL','BCCI','3 months','India');
+insert into league values('l2','BBL','ACB','2 months','Australia');
+create table team(T_id varchar primary key,U_id varchar,L_id varchar,T_name varchar,T_won int);
+create table board(B_id varchar primary key,T_id varchar,B_name varchar,B_org varchar);
