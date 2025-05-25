@@ -1,0 +1,75 @@
+graph TB
+    subgraph Data Sources
+        EHR[Electronic Health Records]
+        Claims[Claims Data]
+        Labs[Laboratory Results]
+        Devices[Medical Devices]
+        Demographics[Patient Demographics]
+    end
+
+    subgraph Data Integration Layer
+        DL[Data Lake]
+        ETL[ETL Pipeline]
+        DataVal[Data Validation]
+        DataStd[Data Standardization]
+    end
+
+    subgraph Processing Layer
+        Stream[Stream Processing]
+        Batch[Batch Processing]
+        ML[ML Pipeline]
+        FeatureStore[Feature Store]
+    end
+
+    subgraph Analytics Layer
+        Risk[Risk Scoring Engine]
+        Pred[Predictive Models]
+        Stats[Statistical Analysis]
+        Alert[Alert Generation]
+    end
+
+    subgraph Presentation Layer
+        API[REST APIs]
+        Dashboard[Analytics Dashboard]
+        Reports[Automated Reports]
+        Notify[Notification System]
+    end
+
+    %% Data Flow
+    EHR --> ETL
+    Claims --> ETL
+    Labs --> ETL
+    Devices --> ETL
+    Demographics --> ETL
+
+    ETL --> DataVal
+    DataVal --> DataStd
+    DataStd --> DL
+
+    DL --> Stream
+    DL --> Batch
+    Stream --> ML
+    Batch --> ML
+    ML --> FeatureStore
+
+    FeatureStore --> Risk
+    FeatureStore --> Pred
+    FeatureStore --> Stats
+    
+    Risk --> Alert
+    Pred --> Alert
+    Stats --> Alert
+
+    Alert --> API
+    Alert --> Dashboard
+    Alert --> Reports
+    Alert --> Notify
+
+    %% Style
+    classDef primary fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef secondary fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef tertiary fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    
+    class EHR,Claims,Labs,Devices,Demographics primary
+    class DL,ETL,DataVal,DataStd secondary
+    class Stream,Batch,ML,FeatureStore,Risk,Pred,Stats,Alert tertiary

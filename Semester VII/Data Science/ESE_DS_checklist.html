@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Data Science Study Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #fff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #4a9eff;
+            margin-top: 25px;
+        }
+
+        h3 {
+            color: #66b3ff;
+            margin-left: 20px;
+        }
+
+        .subtopic {
+            margin-left: 40px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group {
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+
+        .checkbox-group label {
+            margin-right: 15px;
+            color: #888;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Healthcare Data Science Study Checklist</h1>
+
+    <div id="checklist"></div>
+
+    <script>
+        const curriculum = [
+            {
+                title: "1.0 Data Science for Healthcare (5 Hours)",
+                sections: [
+                    {
+                        subtitle: "1.1 Introduction and Basics",
+                        items: [
+                            "Healthcare Data Sources",
+                            "Data Analytics for Healthcare",
+                            "Applications and Practical Systems"
+                        ]
+                    },
+                    {
+                        subtitle: "1.2 Electronic Health Records",
+                        items: [
+                            "Components of EHR",
+                            "Benefits of EHR",
+                            "Barriers to Adopting EHR",
+                            "Challenges of using EHR data",
+                            "Phenotyping Algorithms"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "2.0 Biomedical Image Analysis (6 Hours)",
+                sections: [
+                    {
+                        subtitle: "2.1 Imaging and Analysis",
+                        items: [
+                            "Biomedical Imaging Modalities",
+                            "Object detection",
+                            "Image segmentation",
+                            "Image Registration",
+                            "Feature Extraction"
+                        ]
+                    },
+                    {
+                        subtitle: "2.2 Sensor Data",
+                        items: [
+                            "Mining of Sensor data in Healthcare",
+                            "Challenges in Healthcare Data Analysis"
+                        ]
+                    },
+                    {
+                        subtitle: "2.3 Advanced Analysis",
+                        items: [
+                            "Biomedical Signal Analysis",
+                            "Genomic Data Analysis for Personalized Medicine"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "3.0 Data Science and NLP for Clinical Text (6 Hours)",
+                sections: [
+                    {
+                        subtitle: "3.1 NLP Fundamentals",
+                        items: [
+                            "Mining information from Clinical Text",
+                            "Information Extraction",
+                            "Rule Based Approaches",
+                            "Pattern based algorithms",
+                            "Machine Learning Algorithms"
+                        ]
+                    },
+                    {
+                        subtitle: "3.2 Clinical Applications",
+                        items: [
+                            "Clinical Text Corpora and evaluation metrics",
+                            "Challenges in processing clinical reports",
+                            "Clinical Applications"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "4.0 Social Media Analytics for Healthcare (6 Hours)",
+                sections: [
+                    {
+                        subtitle: "4.1 Disease Surveillance",
+                        items: [
+                            "Social Media analysis for detection",
+                            "Tracking of Infectious Disease outbreaks"
+                        ]
+                    },
+                    {
+                        subtitle: "4.2 Public Health Analytics",
+                        items: [
+                            "Outbreak detection",
+                            "Social Media Analysis for Public Health Research",
+                            "Analysis of Social Media Use in Healthcare"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "5.0 Advanced Data Analytics for Healthcare (8 Hours)",
+                sections: [
+                    {
+                        subtitle: "5.1 Predictive Analytics",
+                        items: [
+                            "Review of Clinical Prediction Models",
+                            "Temporal Data Mining for Healthcare Data"
+                        ]
+                    },
+                    {
+                        subtitle: "5.2 Information Systems",
+                        items: [
+                            "Visual Analytics for Healthcare Data",
+                            "Information Retrieval for Healthcare",
+                            "Data Publishing Methods in Healthcare"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "6.0 Data Science Practical Systems for Healthcare (8 Hours)",
+                sections: [
+                    {
+                        subtitle: "6.1 Healthcare Applications",
+                        items: [
+                            "Data Analytics for Pervasive Health",
+                            "Fraud Detection in Healthcare"
+                        ]
+                    },
+                    {
+                        subtitle: "6.2 Clinical Systems",
+                        items: [
+                            "Data Analytics for Pharmaceutical discoveries",
+                            "Clinical Decision Support Systems"
+                        ]
+                    },
+                    {
+                        subtitle: "6.3 Medical Imaging Systems",
+                        items: [
+                            "Computer-Assisted Medical Image Analysis Systems",
+                            "Mobile Imaging and Analytics for Biomedical Data"
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        function createChecklist() {
+            const container = document.getElementById('checklist');
+            
+            curriculum.forEach(topic => {
+                const topicDiv = document.createElement('div');
+                
+                topicDiv.innerHTML = `
+                    <h2>${topic.title}</h2>
+                    ${topic.sections.map(section => `
+                        <h3>${section.subtitle}</h3>
+                        ${section.items.map(item => `
+                            <div class="subtopic">
+                                <div>• ${item}</div>
+                                <div class="checkbox-group">
+                                    ${Array(5).fill(0).map((_, i) => `
+                                        <label>
+                                            <input type="checkbox" 
+                                                data-item="${item}" 
+                                                data-level="${i + 1}"
+                                                onclick="saveProgress(this)"> 
+                                            L${i + 1}
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    `).join('')}
+                `;
+                
+                container.appendChild(topicDiv);
+            });
+
+            // Load saved progress
+            loadSavedProgress();
+        }
+
+        function saveProgress(checkbox) {
+            const item = checkbox.dataset.item;
+            const level = checkbox.dataset.level;
+            const checked = checkbox.checked;
+            
+            let savedData = JSON.parse(localStorage.getItem('studyProgress') || '{}');
+            if (!savedData[item]) savedData[item] = {};
+            savedData[item][level] = checked;
+            
+            localStorage.setItem('studyProgress', JSON.stringify(savedData));
+        }
+
+        function loadSavedProgress() {
+            const savedData = JSON.parse(localStorage.getItem('studyProgress') || '{}');
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                const item = checkbox.dataset.item;
+                const level = checkbox.dataset.level;
+                if (savedData[item]?.[level]) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        // Initialize the checklist
+        createChecklist();
+    </script>
+</body>
+</html>
